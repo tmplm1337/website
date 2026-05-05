@@ -5,7 +5,7 @@ const translations = {
     'nav.experience':   'Experience',
     'nav.education':    'Education',
     'nav.contact':      'Contact',
-    location:           'Borås, Sweden',
+    location:           'Gothenburg, Sweden',
 
     'about.title':      'About',
     'about.lead':       'Results-driven sales professional with over 15 years of experience in complex solution selling across hardware, software and services.',
@@ -63,7 +63,7 @@ const translations = {
     'nav.experience':   'Erfarenhet',
     'nav.education':    'Utbildning',
     'nav.contact':      'Kontakt',
-    location:           'Borås, Sverige',
+    location:           'Göteborg, Sverige',
 
     'about.title':      'Om mig',
     'about.lead':       'Resultatdriven säljare med över 15 års erfarenhet av komplex lösningsförsäljning inom hårdvara, mjukvara och tjänster.',
