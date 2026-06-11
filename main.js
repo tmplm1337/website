@@ -1,5 +1,5 @@
 const t = {
-  tagline:             'Newly graduated MSc in Informatics, with 15+ years of sales experience',
+  tagline:             'MSc Data-Driven IT Management',
   'nav.about':         'About',
   'nav.studies':       'Studies',
   'nav.experience':    'Experience',
