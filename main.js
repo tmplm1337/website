@@ -58,6 +58,7 @@ const t = {
   'form.message.ph':    'Write your message here...',
   'form.submit':        'Send message',
   'form.success':       "Thank you! Your message has been sent. I'll be in touch shortly.",
+  'form.error':         'Something went wrong. Please try again or email me directly at tim@tim-palm.com.',
 };
 
 document.documentElement.lang = 'en';
@@ -93,11 +94,42 @@ const observer = new IntersectionObserver(
 sections.forEach((s) => observer.observe(s));
 
 // Contact form
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
+  const form = e.target;
   const feedback = document.getElementById('form-feedback');
-  feedback.textContent = t['form.success'];
-  feedback.className = 'form-feedback success';
+  const btn = form.querySelector('.btn-submit');
+
+  btn.disabled = true;
+  feedback.style.display = 'none';
+
+  try {
+    const res = await fetch('https://formsubmit.co/ajax/tim@tim-palm.com', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name:     document.getElementById('fname').value,
+        email:    document.getElementById('femail').value,
+        subject:  document.getElementById('fsubject').value,
+        message:  document.getElementById('fmessage').value,
+        _honey:   form.querySelector('[name="_honey"]').value,
+        _captcha: false,
+      }),
+    });
+
+    if (res.ok) {
+      feedback.textContent = t['form.success'];
+      feedback.className = 'form-feedback success';
+      form.reset();
+    } else {
+      feedback.textContent = t['form.error'];
+      feedback.className = 'form-feedback error';
+    }
+  } catch {
+    feedback.textContent = t['form.error'];
+    feedback.className = 'form-feedback error';
+  }
+
   feedback.style.display = 'block';
-  e.target.reset();
+  btn.disabled = false;
 }
